@@ -6,6 +6,7 @@ from multiprocessing.sharedctypes import Value
 import unittest
 import check_syntax as c
 import custom_errors as e
+import do_math as m
 
 class TestUser(unittest.TestCase):
 
@@ -34,6 +35,10 @@ class TestUser(unittest.TestCase):
         
         print("testing: -1&3/4 - 2 + 3/4 | expected: -3")
         self.assertEqual(c.checkSyntax("-1&3/4 - 2 + 3/4"), "-3")
+        
+        
+        print("testing: 22/7 + 20 / 4/5 | expected: 28&1/7")
+        self.assertEqual(c.checkSyntax("22/7 + 20 / 4/5"), "28&1/7")
         
         print("testing: 1 + 2 + 3 | expected: 6")
         self.assertEqual(c.checkSyntax("1 + 2 + 3"), "6")
@@ -67,6 +72,28 @@ class TestUser(unittest.TestCase):
         print("testing: 1 + * | expected: e.OperatorSyntaxError")
         with self.assertRaises(e.OperatorSyntaxError):
             c.checkSyntax("1 + *")
+            
+    def test_evaluating_repeating_fractions(self):
+        print("\n** Testing Evaluating Repeating Fraction Cases")
+        
+        print("testing: 1/3 | expected: 1/3")
+        self.assertEqual(c.checkSyntax("1/3"), "1/3")
+        
+        print("testing: 4/3 | expected: 1&1/3")
+        self.assertEqual(c.checkSyntax("4/3"), "1&1/3")
+        
+        print("testing: 1&4/3 | expected: 2&1/3")
+        self.assertEqual(c.checkSyntax("1&4/3"), "2&1/3")
+        
+        
+    def test_reducing_fractions(self): # Test the reduceFraction() function even if it's not used in the logic
+        print("\n** Testing Reducing Fraction Cases")
+        
+        print("testing: 36/54 | expected: 2/3")
+        self.assertEqual(m.reduceFraction(36, 54), "2/3")
+        
+        print("testing: 4/6 | expected: 1/3")
+        self.assertEqual(m.reduceFraction(4, 6), "2/3")
         
     
     def test_single_inputs_positive(self):

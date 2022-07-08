@@ -26,22 +26,18 @@ def checkSyntax(input) -> str:
     
     
     if inputLength == 1:
-        # Check if a valid fraction or integer. If valid, then calculate the the fraction/mixed fraction.
-        if "&" in input:
-            if isMixedFraction(input):
-                pass
-            else:
+        # Check if a valid fraction or integer. 
+        if "&" in input: # Check for a sole mixed fraction. If valid, calculate it
+            if not isMixedFraction(input):
                 raise e.InvalidMixedFraction
             
-        elif "/" in input:
-            if isValidFraction(input):
-                pass
-            else:
+        elif "/" in input: # Check for a sole fraction.
+            if not isValidFraction(input):
                 raise e.InvalidFraction
         
         else:
             if isInteger(input, True, False, False):
-                return input
+                return input # Just return the integer input. No need to calculate it
             else:
                 raise e.InvalidInteger
         
@@ -144,6 +140,17 @@ def isMixedFraction(input) -> bool:
         else:
             return True
            
+           
+# Checks if the fraction is improper or not
+def isImproperFraction(input) -> bool:
+    split = input.split("/")
+    numer = split[0]
+    denom = split[1]
+    
+    if numer > denom:
+        return True
+    else:
+        return False
 
 # Helper to isValidFraction(). Checks if the fraction is valid. Checks if both sides of the / are valid numbers
 def isNormalFraction(input, isMixed) -> bool:
