@@ -41,3 +41,6 @@ Example runs (where '?' represents the command prompt):
 ## How to run
 * In the folder directory, run "python3 main.py" to enter user input. User input will continually be asked for until the user types "exit" 
 * To run the test cases, in the folder directory, run "python3 test_cases.py" and all the test cases created will run.
+
+## Why Python
+I wrote this in Python because I knew there would be helpful libraries like the Fraction library that would help in my coding. I didn't want to reinvent the wheel on something that has already been figured out. 
