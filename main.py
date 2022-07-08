@@ -33,7 +33,7 @@ while userInput != EXIT_STR: # continues asking for user input until "exit" is t
         print("Invalid syntax. Missing more input to calculate")
         
     except ValueError:
-        print("Invalid syntax. Must only contain integers/whole numers from 0-9")
+        print("Invalid syntax. Must only contain integers/whole numbers")
         
     except e.InvalidInteger:
         print("Invalid syntax. Invalid integer inputed")
